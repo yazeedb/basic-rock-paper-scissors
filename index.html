@@ -1,0 +1,74 @@
+<script>
+  // const, let, var
+  let userScore = 0;
+  let computerScore = 0;
+
+  // Computer randomly selects a choice
+  const computerPlay = () => {
+    choices = ['rock', 'paper', 'scissors'];
+    randomIndex = Math.floor(Math.random() * choices.length);
+
+    return choices[randomIndex];
+  };
+
+  const playRound = (playerSelection, computerSelection) => {
+    if (playerSelection === computerSelection) {
+      return 'It is a tie!';
+    }
+
+    // Rock choices
+    if (playerSelection === 'rock' && computerSelection === 'scissors') {
+      userScore++;
+
+      return 'You win! Rock beats scissors.';
+    }
+
+    if (playerSelection === 'rock' && computerSelection === 'paper') {
+      computerScore++;
+      return 'You lose! Paper beats rock';
+    }
+
+    // Paper choices
+    if (playerSelection === 'paper' && computerSelection === 'rock') {
+      userScore++;
+      return 'You win! Paper beats rock.';
+    }
+
+    if (playerSelection === 'paper' && computerSelection === 'scissors') {
+      computerScore++;
+      return 'You lose! Scissors beats paper.';
+    }
+
+    // Scissors choices
+    if (playerSelection === 'scissors' && computerSelection === 'paper') {
+      userScore++;
+      return 'You win! Scissors beats paper';
+    }
+
+    if (playerSelection === 'scissors' && computerSelection === 'rock') {
+      computerScore++;
+      return 'You lose! Rock beats paper.';
+    }
+  };
+
+  // Plays the game 5 times
+  // Keeps track of score
+  const game = () => {
+    for (i = 0; i < 5; i++) {
+      const playerSelection = prompt(
+        'Pick rock, paper, or scissors.'
+      ).toLowerCase();
+      const computerSelection = computerPlay();
+
+      const result = playRound(playerSelection, computerSelection);
+
+      console.log(result);
+    }
+
+    // Final score
+    console.log('User score:', userScore);
+    console.log('Computer score:', computerScore);
+  };
+
+  game();
+</script>
